@@ -2,12 +2,14 @@
 
 
 It CAN:
+
 	* Go through any specified files and change all specified native references to WRECK dynamic references.
 	* This applies for both quoted and static references. Both "fac_kingdom_6" and fac_kingdom_6 become fac.kingdom_6, so you only have to keep track of one.
 	* Ignore references in the middle of constants, script names, etc., "create_mesh_overlay" for example.
 	* Access files in a subdirectory if you want to change some old files that have quoted references to dynamic ones, for example.
 
 It CANNOT:
+
 	* Change string references. As is, it relies on the old and new references having the same prefix, and since WRECK has to use "s." in place of "str_", the program can't change that.
 	* Change the imports. I plan on implementing that feature, but for now you still have to manually switch all the imports out.
 	* Ignore identifiers at the end of words, spt_ vs pt_ for example. pt_ is the party_templates identifier, which we want to change, while spt_ is a constant, which we don't want to change.
@@ -33,5 +35,6 @@ USE:
 	2) If you downloaded the regular version, follow the on-screen menu. If not, watch it run. All done. 
 
 Questions, comments, bugs, and source code:
+
 	* All questions, comments, an dbug reports can be sent to mercury19 on the taleworlds forums, or posted in the WRECK thread, here: https://forums.taleworlds.com/index.php/topic,325102.0.html
 	* If you want to work on WRECKER, go for it. You can request a pull from here, or just download the source folder and go to town. The source code is Native 1.171. I did not inlcude WRECK because I didn't find it necessary for creating WRECKER. I use wreckertesting.py for testing new ideas, and then copy the necessary code into wrecker.py, but you can do what you want. If you add stuff let me know so I can check it out, and possibly use your better version :P
