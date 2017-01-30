@@ -69,7 +69,7 @@ def find_old_ref(string):
 
 # find_old_ref(test_string3)
 
-num = 0
+
 
 def check_import(string1):
 	global num
@@ -77,10 +77,10 @@ def check_import(string1):
 	print is_import
 	if is_import == -1:
 		new_string = string1.strip("*")
-		# new_num = num + 1
-		# num = new_num
-		# print num
-		# print new_string
+		new_num = num + 1
+		num = new_num
+		print num
+		print new_string
 		string1 = new_string
 		# print string
 	elif is_import is False:
@@ -99,16 +99,42 @@ def fix_imports(filename):
 
 	file = open(filename,"w")
 
+	num = 0
 	for line in lines:
-		done = check_import(line)
-		line = done
-		print line
-        file.write("%s"%line)
-        print "writing " + line
+		# done = check_import(line)
+		# line = done
+		# print line
+		line = line.strip()
+
+		is_import = find_char(line, "f")
+
+		# print is_import
+
+		if (is_import == -1):
+
+			# print num
+
+			# new_string = line.strip('*')
+			new_num = num + 1
+			num = new_num
+
+			# print num
+
+			# print new_string
+
+			# line = new_string
+
+			# print line
+			# file.write("%s\n"%line)
+        else:
+        	pass 
+		print "writing " + line
+        file.write("%s\n"%line)     
 	file.close()
 
-fix_imports("bogus_import_file.py")
 
+fix_imports("bogus_import_file.py")
+# fix_imports("module_presentations.py")
 
 
 
@@ -128,10 +154,7 @@ def process(filename):
 
 	for line in lines:
 		fixed = find_old_ref(line)
-		if fixed != -1:
-			line = fixed
-		else:
-			pass
+		line = fixed
 		file.write("%s"%line)
 	file.close()
 
