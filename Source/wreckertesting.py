@@ -100,6 +100,7 @@ def fix_imports(filename):
 	file = open(filename,"w")
 
 	num = 0
+	print lines
 	for line in lines:
 		# done = check_import(line)
 		# line = done
@@ -112,24 +113,27 @@ def fix_imports(filename):
 
 		if (is_import == -1):
 
-			# print num
+			print num
 
-			# new_string = line.strip('*')
+			new_string = line.strip('*')
 			new_num = num + 1
 			num = new_num
 
-			# print num
+			print num
 
 			# print new_string
 
-			# line = new_string
+			line = new_string
 
-			# print line
+			print line
 			# file.write("%s\n"%line)
-        else:
-        	pass 
+		else:
+			pass
 		print "writing " + line
-        file.write("%s\n"%line)     
+    	
+	# for line in lines:
+		file.write("%s\n"%line) 
+        # print lines    
 	file.close()
 
 
