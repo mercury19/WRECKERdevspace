@@ -1,4 +1,4 @@
-# WRECKER-0.2b
+# WRECKER-0.3b
 
 
 It CAN:
@@ -8,13 +8,13 @@ It CAN:
 	* Ignore references in the middle of constants, script names, etc., "create_mesh_overlay" for example.
 	* Access files in a subdirectory if you want to change some old files that have quoted references to dynamic ones, for example.
 	* Replace all imports with a single "from compiler import *"
+	* Ignore identifiers at the end of words, spt_ vs pt_ for example. pt_ is the party_templates identifier, which we want to change, while spt_ is a constant, which we don't want to change.
 
 It CANNOT:
 
-	* Change string references. As is, it relies on the old and new references having the same prefix, and since WRECK has to use "s." in place of "str_", the program can't change that.
-	* Ignore identifiers at the end of words, spt_ vs pt_ for example. pt_ is the party_templates identifier, which we want to change, while spt_ is a constant, which we don't want to change.
+	* Change string references. At the moment there are far too many objects that use "str_" but are not strings for string references to be replaced by the current algorithm
 
-In addition, I would avoid using this for module_strings, module_constants, and module_info/pages. Not only is it mostly unnecessary, I haven't thoroughly examined those files so I don't know there are things that would be replaced, but shouldn't be.
+In addition, I would avoid using this for module_strings, module_dialogs, module_constants, and module_info/pages. I haven't thoroughly examined those files so I don't know there are things that would be replaced, but shouldn't be.
 
 
 
@@ -43,6 +43,10 @@ Also, go ahead and ignore the sublime files~
 
 
 CHANGELOG:
+
+	0.3b:
+
+		* Wrecker will now ignore identifiers nested in other words; before, something like "itp_" would incorrectly be converted to "itp." because "p_" is a reference. Now "itp_" and similar will be ignored while replacing "p_" references
 
 	0.2b:
 
