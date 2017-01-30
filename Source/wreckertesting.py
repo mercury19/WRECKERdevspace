@@ -12,6 +12,8 @@ all_identifiers = len(identifier)
 old_id = [identifier[i]+score for i in range(0, all_identifiers)]
 new_id = [identifier[i]+"." for i in range(0, all_identifiers)]
 
+final = "from compiler import *\n"
+
 # print all_identifiers ## 2
 # print range(0, all_identifiers) ## [0, 1]
 # print identifier[0] ## itm
@@ -70,26 +72,6 @@ def find_old_ref(string):
 # find_old_ref(test_string3)
 
 
-
-def check_import(string1):
-	global num
-	is_import = find_char(string1, "f")
-	print is_import
-	if is_import == -1:
-		new_string = string1.strip("*")
-		new_num = num + 1
-		num = new_num
-		print num
-		print new_string
-		string1 = new_string
-		# print string
-	elif is_import is False:
-		pass
-
-	return string1
-
-
-
 def fix_imports(filename):
 
 	print "Fixing imports in " + filename
@@ -99,46 +81,22 @@ def fix_imports(filename):
 
 	file = open(filename,"w")
 
-	num = 0
-	print lines
+	imports = []
 	for line in lines:
-		# done = check_import(line)
-		# line = done
-		# print line
-		line = line.strip()
-
+		if line is lines[0]:
+			lines[0] = final
+			line = lines[0]
 		is_import = find_char(line, "f")
-
-		# print is_import
-
-		if (is_import == -1):
-
-			print num
-
-			new_string = line.strip('*')
-			new_num = num + 1
-			num = new_num
-
-			print num
-
-			# print new_string
-
-			line = new_string
-
-			print line
-			# file.write("%s\n"%line)
-		else:
-			pass
-		print "writing " + line
-    	
-	# for line in lines:
-		file.write("%s\n"%line) 
-        # print lines    
+		if is_import:
+			imports.append(line)
+		discard = imports[1:]
+		if line not in discard:
+			file.write("%s"%line)
 	file.close()
 
 
-fix_imports("bogus_import_file.py")
-# fix_imports("module_presentations.py")
+# fix_imports("bogus_import_file.py")
+fix_imports("module_presentations.py")
 
 
 

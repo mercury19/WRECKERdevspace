@@ -21,6 +21,15 @@ all_identifiers = len(identifier)
 old_id = [identifier[i]+score for i in range(0, all_identifiers)]
 new_id = [identifier[i]+"." for i in range(0, all_identifiers)]
 
+final = "from compiler import *\n"
+
+def find_char(string, char): 
+  character = string[:1]
+  if character is char:
+    return -1
+  else:
+    pass
+
 def find_old_ref(string):
 	for r in range(0, len(old_id)):
 		static = string.find(old_id[r])
@@ -59,6 +68,29 @@ def wrecker(filename):
 	file.close()
 
 
+def fix_imports(filename):
+
+  print "Fixing imports in " + filename
+  file = open(filename,"r")
+  lines = file.readlines()
+  file.close()
+
+  file = open(filename,"w")
+
+  imports = []
+  for line in lines:
+    if line is lines[0]:
+      lines[0] = final
+      line = lines[0]
+    is_import = find_char(line, "f")
+    if is_import:
+      imports.append(line)
+    discard = imports[1:]
+    if line not in discard:
+      file.write("%s"%line)
+  file.close()
+
+
 def print_menu():
     print "#####################################################"
     print "A note on syntax:"
@@ -91,15 +123,12 @@ def process():
               print "processing..."
               for n in range(0, all_files):
                 wrecker(files_to_process[n] + ".py")
+                fix_imports(files_to_process[n] + ".py")
 
             elif choice == '2':
-              try:
-                response = raw_input('Input a file to process: ')
-                wrecker(response + ".py")
-
-              except:
-                print "you fool"
-                pass
+              response = raw_input('Input a file to process: ')
+              wrecker(response + ".py")
+              fix_imports(response + ".py")
 
             elif choice == '3':
               print "######## Files to be processed ########"
