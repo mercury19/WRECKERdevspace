@@ -30,7 +30,7 @@ INSTALLATION:
 USE:
 
 	1) Run the program. Its easiest to do this using the .bat, but if you don't want to use it you can also just run it with python. If you do it this way, make sure that all ".py" files are set to open with python as the default program. It won't work otherwise.
-		a) To set files for the program to WRECK, open up "WRECKER" in a text editor and find "files_to_process". It should be near the top. Add your the files you want to run, without the file extensions. Follow the examples already there. Duplicate this process for reference prefixes, if desired. These are listed under "identifier", right above "files_to_process".
+		a) To set files for the program to WRECK, open up "WRECKER" in a text editor and find "files_to_process". It should be near the top. Add your the files you want to run, without the file extensions. Follow the examples already there. 
 
 	2) If you downloaded the regular version, follow the on-screen menu. If not, watch it run. All done. 
 
