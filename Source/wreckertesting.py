@@ -4,13 +4,58 @@ sys.dont_write_bytecode = True
 import re
 
 
+
+	# WRECK.anim[7] = animations
+	# WRECK.fac[7] = factions
+	# WRECK.ip[7] = info_pages
+	# WRECK.imod[7] = item_modifiers
+	# WRECK.itm[7] = items
+	# WRECK.icon[7] = map_icons
+	# WRECK.mnu[7] = game_menus
+	# WRECK.mesh[7] = meshes
+	# WRECK.mt[7] = mission_templates
+	# WRECK.track[7] = tracks
+	# WRECK.psys[7] = particle_systems
+	# WRECK.p[7] = parties
+	# WRECK.pt[7] = party_templates
+	# WRECK.pfx[7] = postfx_params
+	# WRECK.prsnt[7] = presentations
+	# WRECK.qst[7] = quests
+	# WRECK.spr[7] = scene_props
+	# WRECK.scn[7] = scenes
+	# WRECK.script[7] = scripts
+	# WRECK.skl[7] = skills
+	# WRECK.snd[7] = sounds
+	# WRECK.s[7] = strings
+	# WRECK.tableau[7] = tableaus
+	# WRECK.trp[7] = troops
+
+
+
 quote = '"'
 score = "_"
 
-identifier = ["itm", "fac", "mesh"] ## set your reference identifiers
+identifier = { 0 : "anim", 1 : "fac", 2 : "ip", 3 : "imod", 4 : "itm", 5 : "icon", 6 : "mnu", 7 : "mesh", 8 : "mesh", 9 : "mt", 10 : "track", 11 : "psys", 12 : "p", 13 : "pt", 14 : "pfx", 15 : "prsnt", 16 : "qst", 17 : "spr", 18 : "scn", 19 : "scripts", 20 : "skl", 21 : "snd", 22 : "str", 23 : "tableau", 24 : "trp" }
+
 all_identifiers = len(identifier) 
+
+length = range(0, all_identifiers)
+
+# rename = {"str" : "s"}
+update = [identifier[i]+"." for i in range(0, all_identifiers)]
+
 old_id = [identifier[i]+score for i in range(0, all_identifiers)]
-new_id = [identifier[i]+"." for i in range(0, all_identifiers)]
+
+update_id = dict(zip(length, update))
+print update_id
+update_id[22] = "s."
+
+
+# print update
+# print rename
+print update_id
+
+
 
 final = "from compiler import *\n"
 
@@ -96,7 +141,7 @@ def fix_imports(filename):
 
 
 # fix_imports("bogus_import_file.py")
-fix_imports("module_presentations.py")
+# fix_imports("module_presentations.py")
 
 
 
@@ -120,7 +165,7 @@ def process(filename):
 		file.write("%s"%line)
 	file.close()
 
-# process("module_presentations.py")
+# process("bogus_import_file.py")
 
 
 
@@ -130,8 +175,8 @@ def process(filename):
 
 
 
-# find_id = [r for r in old_id if id in r]
-# find_new = [n for n in new_id if id in n]
+# # find_id = [r for r in old_id if id in r]
+# # find_new = [n for n in new_id if id in n]
 
 
 

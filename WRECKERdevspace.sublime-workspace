@@ -4,8 +4,52 @@
 		"selected_items":
 		[
 			[
+				"update",
+				"update_id〔variable〕"
+			],
+			[
+				"updat",
+				"update_id〔variable〕"
+			],
+			[
+				"id",
+				"identifier〔variable〕"
+			],
+			[
 				"all",
-				"all_prefix"
+				"all_identifiers〔variable〕"
+			],
+			[
+				"new",
+				"new_id〔variable〕"
+			],
+			[
+				"item",
+				"item_modifiers"
+			],
+			[
+				"check",
+				"check_import〔function〕"
+			],
+			[
+				"fix",
+				"fix_imports"
+			],
+			[
+				"file",
+				"filename,\"w"
+			],
+			[
+				"fil",
+				"filename"
+			],
+			[
+				"find",
+				"find_char〔function〕"
+			],
+			[
+				"is",
+				"is_import"
 			],
 			[
 				"quote",
@@ -18,10 +62,6 @@
 			[
 				"s",
 				"string"
-			],
-			[
-				"find",
-				"find_char"
 			],
 			[
 				"module",
@@ -64,11 +104,27 @@
 	"buffers":
 	[
 		{
-			"file": "README.md",
+			"file": "Source/wreckertesting.py",
 			"settings":
 			{
-				"buffer_size": 3105,
+				"buffer_size": 4195,
 				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Source/bogus_import_file.py",
+			"settings":
+			{
+				"buffer_size": 5441,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Source/module_scripts.py",
+			"settings":
+			{
+				"buffer_size": 2350150,
 				"line_ending": "Windows"
 			}
 		}
@@ -130,12 +186,22 @@
 	],
 	"file_history":
 	[
+		"/C/Users/Noah/Desktop/Git/Python/Mount and Blade/Warband/Projects/WRECKERdevspace/Source/ID_scripts.py",
+		"/C/Users/Noah/Desktop/Git/Python/Mount and Blade/Warband/Projects/WRECKERdevspace/Source/line_correction.py",
+		"/C/Users/Noah/Desktop/Git/Python/Mount and Blade/Warband/Projects/WRECKERdevspace/Source/module_troops.py",
+		"/C/Users/Noah/Desktop/Git/Python/Mount and Blade/Warband/Projects/WRECKERdevspace/Source/bogus_import_file.py",
+		"/C/Users/Noah/Desktop/Git/Python/Mount and Blade/Warband/Projects/Project Overhaul/Source/compiler.py",
+		"/C/Users/Noah/Desktop/Git/Python/Mount and Blade/Warband/Projects/Project Overhaul/Source/compile.py",
+		"/C/Users/Noah/Desktop/Git/Python/Mount and Blade/Warband/Projects/WRECKERdevspace/Source/process_common.py",
+		"/C/Users/Noah/Desktop/Git/Python/Mount and Blade/Warband/Projects/WRECKERdevspace/wrecker - NO MENU.py",
+		"/C/Users/Noah/Desktop/Git/Python/Mount and Blade/Warband/Projects/WRECKERdevspace/wrecker.py",
+		"/C/Users/Noah/Desktop/Git/Python/Mount and Blade/Warband/Projects/WRECKERdevspace/Source/wrecker.py",
+		"/C/Users/Noah/Desktop/Git/Python/Mount and Blade/Warband/Projects/WRECKERdevspace/README.md",
+		"/C/Users/Noah/Desktop/Git/Python/Mount and Blade/Warband/Projects/WRECKERdevspace/Source/module_presentations.py",
+		"/C/Users/Noah/Desktop/Git/Python/Mount and Blade/Warband/Projects/WRECKERdevspace/Source/module_postfx.py",
 		"/C/Users/Noah/Desktop/Git/Python/Mount and Blade/Warband/Projects/WRECKERdevspace/wrecker - NOMENU.bat",
 		"/C/Users/Noah/Desktop/Git/Python/Mount and Blade/Warband/Projects/WRECKERdevspace/Source/wrecker - NO MENU.py",
-		"/C/Users/Noah/Desktop/Git/Python/Mount and Blade/Warband/Projects/WRECKERdevspace/Source/module_troops.py",
-		"/C/Users/Noah/Desktop/Git/Python/Mount and Blade/Warband/Projects/WRECKERdevspace/Source/wrecker.py",
 		"/C/Users/Noah/Desktop/Git/Python/Mount and Blade/Warband/Projects/WRECKERdevspace/Source/variables.txt",
-		"/C/Users/Noah/Desktop/Git/Python/Mount and Blade/Warband/Projects/WRECKERdevspace/wrecker - NO MENU.py",
 		"/C/Users/Noah/Desktop/Git/GitTutorial/index.html",
 		"/C/Users/Noah/Desktop/Python Workspace/Mount and Blade/Projects/wrecker test/Source/wrecker.py",
 		"/C/Users/Noah/Desktop/Python Workspace/Mount and Blade/Projects/wrecker test/Source/wreckertesting.py",
@@ -247,21 +313,11 @@
 		"/C/Users/Noah/Desktop/DIplomacy Based Mod Thing/Source - WRECK/compiler.py",
 		"/C/Users/Noah/Desktop/DIplomacy Based Mod Thing/Source - WRECK/compile.py",
 		"/C/Users/Noah/Desktop/DIplomacy Based Mod Thing/Source - WRECK/TPE/__init__.py",
-		"/C/Users/Noah/Desktop/DIplomacy Based Mod Thing/Source - WRECK/TPE/plugin_tpe.py",
-		"/C/Users/Noah/Desktop/tpe_wreck-master/compile.py",
-		"/C/Users/Noah/Desktop/DIplomacy Based Mod Thing/Source - WRECK/tpe_simple_triggers.py",
-		"/C/Users/Noah/Desktop/DIplomacy Based Mod Thing/Source - WRECK/tpe_scripts.py",
-		"/C/Users/Noah/Desktop/DIplomacy Based Mod Thing/Source - WRECK/tpe_mission_templates.py",
-		"/C/Users/Noah/Desktop/DIplomacy Based Mod Thing/Source - WRECK/tpe_game_menus.py",
-		"/C/Users/Noah/Desktop/DIplomacy Based Mod Thing/Source - WRECK/process_line_correction.py",
-		"/C/Users/Noah/Desktop/DIplomacy Based Mod Thing/Source - WRECK/tpe_strings.py",
-		"/C/Users/Noah/Desktop/DIplomacy Based Mod Thing/Source - WRECK/headers/header_troops.py",
-		"/C/Users/Noah/Desktop/module_scripts.py",
-		"/C/Users/Noah/Desktop/DIplomacy Based Mod Thing/Source - WRECK/module_scripts.py"
+		"/C/Users/Noah/Desktop/DIplomacy Based Mod Thing/Source - WRECK/TPE/plugin_tpe.py"
 	],
 	"find":
 	{
-		"height": 22.0
+		"height": 34.0
 	},
 	"find_in_files":
 	{
@@ -276,6 +332,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"str_",
+			"str_store_troop_name",
 			"from module_constants import *",
 			"\"pt.",
 			"\"trp.",
@@ -425,29 +483,147 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "README.md",
+					"file": "Source/wreckertesting.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3105,
+						"buffer_size": 4195,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3105,
-								3105
+								1393,
+								1393
 							]
 						],
 						"settings":
 						{
 							"auto_complete": false,
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										1393,
+										1394
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/double_quote.png",
+										"brackethighlighter.default"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										1390,
+										1391
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content"
+							],
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 272.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "Source/bogus_import_file.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5441,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
 							"bracket_highlighter.busy": false,
 							"bracket_highlighter.locations":
 							{
@@ -466,66 +642,187 @@
 							},
 							"bracket_highlighter.regions":
 							[
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
 								"bh_unmatched",
 								"bh_unmatched_center",
 								"bh_unmatched_open",
 								"bh_unmatched_close",
 								"bh_unmatched_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
 								"bh_default",
 								"bh_default_center",
 								"bh_default_open",
 								"bh_default_close",
 								"bh_default_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
 								"bh_round",
 								"bh_round_center",
 								"bh_round_open",
 								"bh_round_close",
-								"bh_round_content"
+								"bh_round_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content"
 							],
-							"syntax": "Packages/Markdown/Markdown.sublime-syntax"
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 559.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "Source/module_scripts.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2350150,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1540,
+								1560
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										1578,
+										1579
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/round_bracket.png",
+										"brackethighlighter.default"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										1539,
+										1540
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content"
+							],
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 26.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -536,7 +833,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 22.0
+		"height": 21.0
 	},
 	"input":
 	{
@@ -567,13 +864,13 @@
 	"menu_visible": true,
 	"output.find_results":
 	{
-		"height": 88.0
+		"height": 865.0
 	},
 	"pinned_build_system": "",
 	"project": "WRECKERdevspace.sublime-project",
 	"replace":
 	{
-		"height": 40.0
+		"height": 38.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -611,7 +908,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 243.0,
+	"side_bar_width": 212.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
