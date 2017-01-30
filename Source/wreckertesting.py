@@ -69,39 +69,45 @@ def find_old_ref(string):
 
 # find_old_ref(test_string3)
 
-# def check_import(string):
-# 	is_import = string.startswith("from")
-# 	if is_import:
-# 		num = 0
-# 		new_num = num + 1
-# 		num = new_num
-# 		print num
-# 		string = string
-# 	else:
-# 		pass
-# 	return string
+num = 0
+
+def check_import(string1):
+	global num
+	is_import = find_char(string1, "f")
+	print is_import
+	if is_import == -1:
+		new_string = string1.strip("*")
+		# new_num = num + 1
+		# num = new_num
+		# print num
+		# print new_string
+		string1 = new_string
+		# print string
+	elif is_import is False:
+		pass
+
+	return string1
 
 
 
-# def fix_imports(filename):
+def fix_imports(filename):
 
-# 	print "Fixing imports in " + filename
-# 	file = open(filename,"r")
-# 	lines = file.readlines()
-# 	file.close()
+	print "Fixing imports in " + filename
+	file = open(filename,"r")
+	lines = file.readlines()
+	file.close()
 
-# 	file = open(filename,"w")
+	file = open(filename,"w")
 
-# 	for line in lines:
-# 		done = check_import(line)
-# 		if done != -1:
-# 			line = done
-# 		else:
-# 			pass
-#         file.write("%s"%line)
-# 	file.close()
+	for line in lines:
+		done = check_import(line)
+		line = done
+		print line
+        file.write("%s"%line)
+        print "writing " + line
+	file.close()
 
-# fix_imports("module_presentations.py")
+fix_imports("bogus_import_file.py")
 
 
 
@@ -142,32 +148,5 @@ def process(filename):
 # find_id = [r for r in old_id if id in r]
 # find_new = [n for n in new_id if id in n]
 
-
-
-
-
-# 		find_old_ref(line)
-# 		for c in range(0, len(old_ref)):
-# 			num = line.find(old_ref[c])
-# 			pref_length = len(old_ref[c])
-# 			reference = line[num-1:pref_length]
-# 			quoted_reference = find_char(reference, quote)
-# 			function_call = find_char(reference, score)
-# 			if (function_call == -1):
-# 				c.replace(old_prefix, new_prefix)
-# 				if (quoted_reference == -1):
-# 					quote_ref = line[reference:quote]
-# 					quote_ref.strip
-# 					c = quote_ref
-# 					return c
-# 				else:
-# 					return c
-# 			else: 
-# 				return c
-# 		file.write("%s"%line)
-# 	file.close()
-
-
-# process("module_simple_triggers.py")
 
 
