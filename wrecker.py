@@ -42,7 +42,7 @@ def find_old_ref(string):
     found = find_id.findall(string)
     references = [f for f in found if not non_ref.match(f)]
     for ref in references:
-      isquote = find_char(ref, quote)e
+      isquote = find_char(ref, quote)
       if isquote == -1:
         quoted = string.find(old_id[r])
         next_quote = string.find(quote, quoted)
