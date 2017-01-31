@@ -229,7 +229,7 @@ def add_wrecker_options(filename):
 	lines = file.readlines()
 	file.close()
 
-	if test in lines:
+	if test not in lines:
 		print "expanding " + filename
 		with open(filename, "a") as file:
 			file.write(info)

@@ -4,8 +4,8 @@ sys.dont_write_bytecode = True
 import re
 
 
-## set the files to WRECK. It is adivsed that you do NOT use this file to WRECK the following: module_constants, module_strings, module_info, and module_info_pages.
-files_to_process = ['module_scripts', 'module_presentations', 'module_troops', 'module_items', 'module_game_menus'] 
+## set the files to WRECK. It is adivsed that you do NOT use this file to WRECK the following: module_constants, module_info, module_variables, and module_info_pages.
+files_to_process = ['module_animations', 'module_dialogs', 'module_factions', 'module_game_menus', 'module_items', 'module_map_icons', 'module_meshes', 'module_mission_templates', 'module_music', 'module_particle_systems', 'module_parties', 'module_party_templates', 'module_postfx', 'module_presentations', 'module_quests', 'module_scene_props', 'module_scenes', 'module_scripts', 'module_simple_triggers', 'module_skills', 'module_skins', 'module_sounds', 'module_strings', 'module_tableau_materials', 'module_triggers', 'module_troops'] 
 
 identifier = {'spr_': 'spr.', 'icon_': 'icon.', 'prsnt_': 'prsnt.', 'p_': 'p.', 'psys_': 'psys.', 'mesh_': 'mesh.', 'itm_': 'itm.', 'qst_': 'qst.', 'tableau_': 'tableau.', 'pt_': 'pt.', 'trp_': 'trp.', 'ip_': 'ip.', 'mt_': 'mt.', 'anim_': 'anim.', 'pfx_': 'pfx.', 'snd_': 'snd.', 'scn_': 'scn.', 'mnu_': 'mnu.', 'imod_': 'imod.', 'skl_': 'skl.', 'script_': 'script.', 'track_': 'track.', 'fac_': 'fac.'}
 old_id = identifier.keys()
@@ -18,6 +18,9 @@ quote = '"'
 score = "_"
 
 final = "from compiler import *\n"
+
+special_str = re.compile(r'str_1_')
+not_str = re.compile(r'(str_clear|str_is_empty|str_store|str_encode|str_\d)')
 
 def find_char(string, char): 
   character = string[:1]
@@ -76,8 +79,7 @@ def fix_string_refs(string):
 
 
 def wrecker(filename):
-
-	print "Fixing references in " + filename
+  print "Fixing references in " + filename
   file = open(filename,"r")
   lines = file.readlines()
   file.close()
@@ -94,7 +96,6 @@ def wrecker(filename):
 
 
 def fix_imports(filename):
-
   print "Fixing imports in " + filename
   file = open(filename,"r")
   lines = file.readlines()
@@ -123,7 +124,7 @@ def add_wrecker_options(filename):
   lines = file.readlines()
   file.close()
 
-  if test in lines:
+  if test not in lines:
     print "expanding " + filename
     with open(filename, "a") as file:
       file.write(info)
@@ -164,7 +165,7 @@ def process():
               for n in range(0, all_files):
                 wrecker(files_to_process[n] + ".py")
                 fix_imports(files_to_process[n] + ".py")
-              expand_module_info("module_info.py")
+              add_wrecker_options("module_info.py")
 
             elif choice == '2':
               response = raw_input('Input a file to process: ')
@@ -172,7 +173,7 @@ def process():
               fix_imports(response + ".py")
 
             elif choice == '3':
-              expand_module_info("module_info.py")
+              add_wrecker_options("module_info.py")
 
             elif choice == '4':
               print "######## Files to be processed ########"
