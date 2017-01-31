@@ -1,4 +1,4 @@
-# WRECKER-0.3b
+# WRECKER-1.0
 
 
 It CAN:
@@ -10,12 +10,6 @@ It CAN:
 	* Replace all imports with a single "from compiler import *"
 	* Ignore identifiers at the end of words, spt_ vs pt_ for example. pt_ is the party_templates identifier, which we want to change, while spt_ is a constant, which we don't want to change.
 
-It CANNOT:
-
-	* Change string references. At the moment there are far too many objects that use "str_" but are not strings for string references to be replaced by the current algorithm
-
-In addition, I would avoid using this for module_strings, module_dialogs, module_constants, and module_info/pages. I haven't thoroughly examined those files so I don't know there are things that would be replaced, but shouldn't be.
-
 
 
 
@@ -25,6 +19,8 @@ INSTALLATION:
 		a) If you want to, download the matching .bat file. There's really no reason not too but it's technically optional. 
 
 	2) Put the "WRECKER" file (and .bat if you have it) in the same folder as your "module_" files. Boom. Installed.
+
+	3) Make sure you compile using WRECK. If you try to use this program with the native compiler you will be drowned errors. 
 
 
 USE:
@@ -36,13 +32,23 @@ USE:
 
 Questions, comments, bugs, and source code:
 
-	* All questions, comments, an dbug reports can be sent to mercury19 on the taleworlds forums, or posted in the WRECK thread, here: https://forums.taleworlds.com/index.php/topic,325102.0.html
+	* All questions, comments, and bug reports can be sent to mercury19 on the taleworlds forums, or posted in the WRECK thread, here: https://forums.taleworlds.com/index.php/topic,325102.0.html
 	* If you want to work on WRECKER, go for it. You can request a pull from here, or just download the source folder and go to town. The source code is Native 1.171. I did not inlcude WRECK because I didn't find it necessary for creating WRECKER. I use wreckertesting.py for testing new ideas, and then copy the necessary code into wrecker.py, but you can do what you want. If you add stuff let me know so I can check it out, and possibly use your better version :P
 
 Also, go ahead and ignore the sublime files~
 
 
 CHANGELOG:
+
+	1.0:
+
+		* Added support for changing string references
+		* WRECKER options are now added to module_info.py by default
+
+		* Fixed bug where if an identifier had a static reference followed by a quoted reference, the quoted reference was not properly processed
+
+		* Cleaned code for determining identifiers - 1 dict and 2 lists rather than multiple of both
+		
 
 	0.3b:
 
