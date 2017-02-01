@@ -7,9 +7,8 @@ What it does:
 	* This only applies for static references. fac_kingdom_6 will be changed to fac.kingdom_6, while quoted references like "fac_kingdom_6" will be left as is.
 	* Ignore references in the middle of constants, script names, etc., "create_mesh_overlay" for example.
 	* Access files in a subdirectory if you want to change some old files that have quoted references to dynamic ones, for example.
-	* Replace all imports with a single "from compiler import *"
+	* Replace all imports with a single "from compiler import *" in both header_ and module_ files.
 	* Ignore identifiers at the end of words, spt_ vs pt_ for example. pt_ is the party_templates identifier, which we want to change, while spt_ is a constant, which we don't want to change.
-	* Fix imports in header files.
 
 
 
@@ -34,7 +33,7 @@ USE:
 Questions, comments, bugs, and source code:
 
 	* All questions, comments, and bug reports can be sent to mercury19 on the taleworlds forums, or posted in the WRECK thread, here: https://forums.taleworlds.com/index.php/topic,325102.0.html
-	* If you want to work on WRECKER, go for it. You can request a pull from here, or just download the source folder and go to town. The source code is Native 1.171. I did not inlcude WRECK because I didn't find it necessary for creating WRECKER. I use wreckertesting.py for testing new ideas, and then copy the necessary code into wrecker.py, but you can do what you want. If you add stuff let me know so I can check it out, and possibly use your better version :P
+	* WRECKER is open source. Technically you don't need a modsys to edit it, just a text editor, but I included the source folder I used for development because I'm lazy so if you want to download that and see the draft file I used, go for it. 
 
 Also, go ahead and ignore the sublime files~
 
