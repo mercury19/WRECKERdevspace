@@ -1,13 +1,20 @@
 import sys
 sys.dont_write_bytecode = True
 
+from os.path import split as path_split, exists as path_exists
 import re
 
 
-## set the files to WRECK. It is adivsed that you do NOT use this file to WRECK the following: module_constants, module_info, module_variables, and module_info_pages.
-files_to_process = ['module_animations', 'module_dialogs', 'module_factions', 'module_game_menus', 'module_items', 'module_map_icons', 'module_meshes', 'module_mission_templates', 'module_music', 'module_particle_systems', 'module_parties', 'module_party_templates', 'module_postfx', 'module_presentations', 'module_quests', 'module_scene_props', 'module_scenes', 'module_scripts', 'module_simple_triggers', 'module_skills', 'module_skins', 'module_sounds', 'module_strings', 'module_tableau_materials', 'module_triggers', 'module_troops'] 
+## unused: ['animations', 'quests', 'strings', ] no references to outside files
+file_names = ['constants', 'dialogs', 'factions', 'game_menus', 'items', 'map_icons', 'meshes', 'mission_templates', 'music', 'particle_systems', 'parties', 'party_templates', 'postfx', 'presentations', 'scene_props', 'scenes', 'scripts', 'simple_triggers', 'skills', 'skins', 'sounds', 'tableau_materials', 'triggers', 'troops'] 
+modules = ['module_' + n for n in file_names]
+headers = ['header_' + n for n in file_names]
+headers_sub = ['headers/' + h for h in headers]
 
-identifier = {'spr_': 'spr.', 'icon_': 'icon.', 'prsnt_': 'prsnt.', 'p_': 'p.', 'psys_': 'psys.', 'mesh_': 'mesh.', 'itm_': 'itm.', 'qst_': 'qst.', 'tableau_': 'tableau.', 'pt_': 'pt.', 'trp_': 'trp.', 'ip_': 'ip.', 'mt_': 'mt.', 'anim_': 'anim.', 'pfx_': 'pfx.', 'snd_': 'snd.', 'scn_': 'scn.', 'mnu_': 'mnu.', 'imod_': 'imod.', 'skl_': 'skl.', 'script_': 'script.', 'track_': 'track.', 'fac_': 'fac.'}
+headers_package = path_exists('./headers')
+
+## unused: [, 'tableau_': 'tableau.' 'spr_': 'spr.', ] all quoted references
+identifier = {'icon_': 'icon.', 'prsnt_': 'prsnt.', 'p_': 'p.', 'psys_': 'psys.', 'mesh_': 'mesh.', 'itm_': 'itm.', 'qst_': 'qst.', 'pt_': 'pt.', 'trp_': 'trp.', 'ip_': 'ip.', 'mt_': 'mt.', 'anim_': 'anim.', 'pfx_': 'pfx.', 'snd_': 'snd.', 'scn_': 'scn.', 'mnu_': 'mnu.', 'imod_': 'imod.', 'skl_': 'skl.', 'script_': 'script.', 'track_': 'track.', 'fac_': 'fac.'}
 old_id = identifier.keys()
 new_id = identifier.values()
 
@@ -32,50 +39,50 @@ def find_char(string, char):
 def find_old_ref(string):
   for r in range(0, len(identifier)):
     find_id = re.compile(r'[\s|\S]' + re.escape(old_id[r]) )
-    non_ref = re.compile(r'\w' + re.escape(old_id[r]) )
+    non_ref = re.compile(r'[\w."]' + re.escape(old_id[r]) )
     found = find_id.findall(string)
     references = [f for f in found if not non_ref.match(f)]
     for ref in references:
-      isquote = find_char(ref, quote)
-      if isquote == -1:
-        quoted = string.find(quote+old_id[r])
-        next_quote = string.find(quote, quoted+1)
-        quoted_reference = string[quoted:next_quote+1]
-        new_ref = quoted_reference.strip(quote).replace(old_id[r], new_id[r])
-        new = string.replace(quoted_reference, new_ref)
-        string = new
-      else:
-        new = re.sub(old_id[r], new_id[r], ref)
-        final = string.replace(ref, new)
-        string = final
-  return string
-
-
-def fix_string_refs(string):
-  first = special_str.sub('s.1_', string)
-  string = first
-  find_str = re.compile(r'[\s|\S]' + 'str_')
-  non_ref = re.compile(r'\w' + 'str_')
-  found = find_str.findall(string)
-  references = [f for f in found if not non_ref.match(f)]
-  for ref in references:
-    isquote = find_char(ref, quote)
-    thing = string.find(ref)
-    skip = not_str.findall(string)
-    if isquote == -1:
-      quoted = string.find('"str_')
-      next_quote = string.find(quote, quoted+1)
-      quoted_reference = string[quoted:next_quote+1]
-      new_ref = quoted_reference.strip(quote).replace('str_', 's.')
-      new = string.replace(quoted_reference, new_ref)
-      string = new
-    elif not_str.match(string[thing+1:]):
-      pass
-    else:
-      new = re.sub('str_', 's.', ref)
-      final = string.replace(ref, new, 1)
+      # isquote = find_char(ref, quote) ## Quoteed reference replacement deprecated. The number of errors it generated outweighed any desire for consistency, and it's unecessary anyway.
+      # if isquote == -1:
+      #   quoted = string.find(quote+old_id[r])
+      #   next_quote = string.find(quote, quoted+1)
+      #   quoted_reference = string[quoted:next_quote+1]
+      #   new_ref = quoted_reference.strip(quote).replace(old_id[r], new_id[r], 1)
+      #   new = string.replace(quoted_reference, new_ref)
+      #   string = new
+      # else:
+      new = re.sub(old_id[r], new_id[r], ref, 1)
+      final = string.replace(ref, new)
       string = final
   return string
+
+## Deprecated; All string references to remain quoted, as they contain special characters(=, +, etc.) which mess with the compiler otherwise.
+# def fix_string_refs(string):
+#   first = special_str.sub('s.1_', string)
+#   string = first
+#   find_str = re.compile(r'[\s|\S]' + 'str_')
+#   non_ref = re.compile(r'[\w.]' + 'str_' + r'[_]')
+#   found = find_str.findall(string)
+#   references = [f for f in found if not non_ref.match(f)]
+#   for ref in references:
+#     isquote = find_char(ref, quote)
+#     thing = string.find(ref)
+#     skip = not_str.findall(string)
+#     if isquote == -1:
+#       quoted = string.find('"str_')
+#       next_quote = string.find(quote, quoted+1)
+#       quoted_reference = string[quoted:next_quote+1]
+#       new_ref = quoted_reference.strip(quote).replace('str_', 's.', 1)
+#       new = string.replace(quoted_reference, new_ref)
+#       string = new
+#     elif not_str.match(string[thing+1:]):
+#       pass
+#     else:
+#       new = re.sub('str_', 's.', ref)
+#       final = string.replace(ref, new, 1)
+#       string = final
+#   return string
 
 
 def wrecker(filename):
@@ -89,8 +96,8 @@ def wrecker(filename):
   for line in lines:
     start = find_old_ref(line)
     line = start
-    finish = fix_string_refs(line)
-    line = finish
+    # finish = fix_string_refs(line)
+    # line = finish
     file.write("%s"%line)
   file.close()
 
@@ -102,13 +109,12 @@ def fix_imports(filename):
   file.close()
 
   file = open(filename,"w")
+  add_new = [final] + lines
+  lines = add_new
 
   imports = []
   for line in lines:
-    if line is lines[0]:
-      lines[0] = final
-      line = lines[0]
-    is_import = find_char(line, "f")
+    is_import = line.startswith("from")
     if is_import:
       imports.append(line)
     discard = imports[1:]
@@ -157,14 +163,23 @@ def process():
   while choice != "0":
     choice =""
     while not choice in legal_choices:
-            choice = raw_input("Make a choice (4 to display menu again) >").lower()
+            choice = raw_input("Make a choice (5 to display menu again) >").lower()
 
             if choice == '1':
-              all_files = len(files_to_process)
+              all_files = len(file_names)
               print "processing..."
               for n in range(0, all_files):
-                wrecker(files_to_process[n] + ".py")
-                fix_imports(files_to_process[n] + ".py")
+                wrecker(modules[n] + ".py")
+                fix_imports(modules[n] + ".py")
+                try:
+                  if headers_package:
+                    fix_imports(headers_sub[n] + ".py")
+                    fix_imports("headers/header_common.py")
+                  else:
+                    fix_imports(headers[n] + ".py")
+                    fix_imports("header_common.py")
+                except:
+                  pass 
               add_wrecker_options("module_info.py")
 
             elif choice == '2':
@@ -178,9 +193,9 @@ def process():
             elif choice == '4':
               print "######## Files to be processed ########"
               print ""
-              all_files = len(files_to_process)
+              all_files = len(file_names)
               for n in range(0, all_files):
-                print files_to_process[n]
+                print modules[n]
                 print ""
 
 

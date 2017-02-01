@@ -1,14 +1,15 @@
-# WRECKER-1.0
+# WRECKER-1.1
 
 
-It CAN:
+What it does:
 
 	* Go through any specified files and change all specified native references to WRECK dynamic references.
-	* This applies for both quoted and static references. Both "fac_kingdom_6" and fac_kingdom_6 become fac.kingdom_6, so you only have to keep track of one.
+	* This only applies for static references. fac_kingdom_6 will be changed to fac.kingdom_6, while quoted references like "fac_kingdom_6" will be left as is.
 	* Ignore references in the middle of constants, script names, etc., "create_mesh_overlay" for example.
 	* Access files in a subdirectory if you want to change some old files that have quoted references to dynamic ones, for example.
 	* Replace all imports with a single "from compiler import *"
 	* Ignore identifiers at the end of words, spt_ vs pt_ for example. pt_ is the party_templates identifier, which we want to change, while spt_ is a constant, which we don't want to change.
+	* Fix imports in header files.
 
 
 
@@ -39,6 +40,18 @@ Also, go ahead and ignore the sublime files~
 
 
 CHANGELOG:
+
+	1.1:
+
+		* ACTUAL full functionality. 100% tested on native
+		* Added function for fixing header imports, since many referenced ID files which WRECK doesn't need
+		* Finalized lists of prefixes to be changed and files to fix. Unused prefixes/files are noted above their respective lists
+		* Improved import replacement method
+
+		* Fixed a bug causing the import fixer to remove the "factions = [" in module_factions
+
+		* Removed support for quoted reference replacement. Consistency is nice, but it caused too many errors to be worth it.
+		* Removed support for string reference replacements. All string references are quoted, and many HAVE to be quoted because they contain special characters that mess with the compiler otherwise.
 
 	1.0:
 

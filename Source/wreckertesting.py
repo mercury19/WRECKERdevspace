@@ -1,6 +1,7 @@
 import sys
 sys.dont_write_bytecode = True
 
+from os.path import split as path_split, exists as path_exists
 import re
 
 
@@ -32,6 +33,17 @@ import re
 
 # str_clear, str_is_empty, str_store, str_encode, str_[0-9]
 
+headers_package = path_exists('./headers')
+
+# if headers_package:
+# 	from headers.header_common import *
+# else:
+# 	from header_common import *
+
+
+file_names = ['animations', 'dialogs', 'factions', 'game_menus', 'items', 'map_icons', 'meshes', 'mission_templates', 'music', 'particle_systems', 'parties', 'party_templates', 'postfx', 'presentations', 'quests', 'scene_props', 'scenes', 'scripts', 'simple_triggers', 'skills', 'skins', 'sounds', 'strings', 'tableau_materials', 'triggers', 'troops'] 
+
+
 quote = '"'
 score = "_"
 
@@ -47,14 +59,18 @@ final = "from compiler import *\n"
 special_str = re.compile(r'str_1_')
 not_str = re.compile(r'(str_clear|str_is_empty|str_store|str_encode|str_\d)')
 
+module_files = ['module_' + n for n in file_names]
+headers = ['header_' + n for n in file_names]
+headers_sub = ['headers/' + h for h in headers]
+
+# print module_files
+# print headers
+# print headers_sub
 
 
 
 
-
-
-
-test_string = '(faction_set_note_available, "fac_no_faction", 0, itm_bolts, itm_str_axe), script_get_str_for_troop, (str_is_empty, "str_kingdom_6", str_kingdom_6, str_store_, str_1_denar, str_1_div), str_20'
+test_string = '(faction_set_note_available, "fac_no_faction", 0, itm_bolts, itm_str_axe), script_get_str_for_troop, (str_is_empty, "str_kingdom_6", str_kingdom_6, str_store_, str_1_denar, str_1_div), str_20, str___s3, mesh_tableau_mesh_custom_banner, '
 test_string2 = '["wut_dafac_man","Maceman","Maceman",tf_guarantee_boots|tf_guarantee_armor,no_scene,reserved,fac_commoners, [itm_tutorial_club,itm_leather_jerkin,itm_hide_boots], str_6|agi_6|level(1),wp(50),knows_common,mercenary_face_1,mercenary_face_2],'
 test_string3 = '(call_script, "script_give_center_to_faction_aux", "p_town_1", fac_kingdom_4, itm_bolts, create_mesh_overlay, "wut_dafac_man", "fac_kingdom_4"),'
 
@@ -72,12 +88,14 @@ def fix_string_refs(string):
 	first = special_str.sub('s.1_', string)
 	string = first
 	find_str = re.compile(r'[\s|\S]' + 'str_')
-	non_ref = re.compile(r'\w' + 'str_')
+	non_ref = re.compile(r'[\wstr_|str__]')
 
 	found = find_str.findall(string)
+	print found
 
 	references = [f for f in found if not non_ref.match(f)]
-	# print references
+	print references
+
 
 	# print string
 
@@ -94,7 +112,7 @@ def fix_string_refs(string):
 			quoted = string.find('"str_')
 			next_quote = string.find(quote, quoted+1)
 			quoted_reference = string[quoted:next_quote+1]
-			new_ref = quoted_reference.strip(quote).replace('str_', 's.')
+			new_ref = quoted_reference.strip(quote).replace('str_', 's.', 1)
 			new = string.replace(quoted_reference, new_ref)
 			string = new
 			# print string
@@ -106,14 +124,14 @@ def fix_string_refs(string):
 			string = final
 			# print string
 
-	# print string
+	print string
 
 	return string
 		
 
 
 
-# fix_string_refs(test_string)
+fix_string_refs(test_string)
 
 
 
@@ -130,43 +148,44 @@ def fix_string_refs(string):
 def find_old_ref(string):
 	for r in range(0, len(identifier)):
 		find_id = re.compile(r'[\s|\S]' + re.escape(old_id[r]) )
-		non_ref = re.compile(r'\w' + re.escape(old_id[r]) )
+		non_ref = re.compile(r'[\w|."]' + re.escape(old_id[r]) )
 		found = find_id.findall(string)
 		# print found
 		references = [f for f in found if not non_ref.match(f)]
 		# print references
 		for ref in references:
 			# print ref
-			isquote = find_char(ref, quote)
+			# isquote = find_char(ref, quote)
 			# print isquote
-			if isquote == -1:
-				quoted = string.find(quote+old_id[r])
-				print quoted
-				next_quote = string.find(quote, quoted+1)
-				quoted_reference = string[quoted:next_quote+1]
-				# print quoted
-				# print '"'+old_id[r]
-				# print next_quote
-				# print quoted_reference
-				new_ref = quoted_reference.strip(quote).replace(old_id[r], new_id[r])
-				# print new_ref
-				new = string.replace(quoted_reference, new_ref)
-				# print new
-				string = new
-			else:
-				new = re.sub(old_id[r], new_id[r], ref)
-				final = string.replace(ref, new)
+			# if isquote == -1:
+			# 	pass
+			# 	# quoted = string.find(quote+old_id[r])
+			# 	# # print quoted
+			# 	# next_quote = string.find(quote, quoted+1)
+			# 	# quoted_reference = string[quoted:next_quote+1]
+			# 	# # print quoted
+			# 	# # print '"'+old_id[r]
+			# 	# # print next_quote
+			# 	# # print quoted_reference
+			# 	# new_ref = quoted_reference.strip(quote).replace(old_id[r], new_id[r], 1)
+			# 	# # print new_ref
+			# 	# new = string.replace(quoted_reference, new_ref)
+			# 	# # print new
+			# 	# string = new
+			# else:
+			new = re.sub(old_id[r], new_id[r], ref, 1)
+			final = string.replace(ref, new)
 				# print final
 				# print new_id[r]
 				# print new
-				string = final
+			string = final
 
 
 	print string
 
 	return string
 
-find_old_ref(test_string3)
+find_old_ref(test_string)
 
 
 def fix_imports(filename):
@@ -177,16 +196,18 @@ def fix_imports(filename):
 	file.close()
 
 	file = open(filename,"w")
+	add_new = [final] + lines
+	lines = add_new
 
 	imports = []
 	for line in lines:
-		if line is lines[0]:
-			lines[0] = final
-			line = lines[0]
-		is_import = find_char(line, "f")
+		# print line
+		is_import = line.startswith("from")
+		# print is_import
 		if is_import:
 			imports.append(line)
 		discard = imports[1:]
+		# print discard
 		if line not in discard:
 			file.write("%s"%line)
 	file.close()
