@@ -1,4 +1,4 @@
-# WRECKER-1.1
+# WRECKER-1.2
 
 
 What it does:
@@ -39,6 +39,10 @@ Also, go ahead and ignore the sublime files~
 
 
 CHANGELOG:
+
+	1.2:
+
+		* Updated the import fixer to resolve some file not getting thie rimports fixed, and two header files which need an extra import if in a subdirectory
 
 	1.1:
 
