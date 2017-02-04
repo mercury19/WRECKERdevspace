@@ -6,7 +6,7 @@ import re
 
 
 ## unused: ['animations', 'quests', 'strings', ] no references to outside files
-file_names = ['constants', 'dialogs', 'factions', 'game_menus', 'items', 'map_icons', 'meshes', 'mission_templates', 'music', 'particle_systems', 'parties', 'party_templates', 'postfx', 'presentations', 'scene_props', 'scenes', 'scripts', 'simple_triggers', 'skills', 'skins', 'sounds', 'tableau_materials', 'triggers', 'troops'] 
+file_names = ['animations', 'quests', 'constants', 'dialogs', 'factions', 'game_menus', 'items', 'map_icons', 'meshes', 'mission_templates', 'music', 'particle_systems', 'parties', 'party_templates', 'postfx', 'presentations', 'scene_props', 'scenes', 'scripts', 'simple_triggers', 'skills', 'skins', 'sounds', 'tableau_materials', 'triggers', 'troops'] 
 modules = ['module_' + n for n in file_names]
 headers = ['header_' + n for n in file_names]
 headers_sub = ['headers/' + h for h in headers]
@@ -25,16 +25,24 @@ quote = '"'
 score = "_"
 
 final = "from compiler import *\n"
+extraimport = "from header_common import bignum\n"
 
-special_str = re.compile(r'str_1_')
-not_str = re.compile(r'(str_clear|str_is_empty|str_store|str_encode|str_\d)')
-
-def find_char(string, char): 
-  character = string[:1]
-  if character is char:
-    return -1
+def check_file(string1, string2):
+  is_found = string1.find(string2)
+  if is_found != -1:
+    return True
   else:
-    pass
+    return False
+
+# special_str = re.compile(r'str_1_')
+# not_str = re.compile(r'(str_clear|str_is_empty|str_store|str_encode|str_\d)')
+
+# def find_char(string, char): 
+#   character = string[:1]
+#   if character is char:
+#     return -1
+#   else:
+#     pass
 
 def find_old_ref(string):
   for r in range(0, len(identifier)):
@@ -102,22 +110,33 @@ def wrecker(filename):
   file.close()
 
 
-def fix_imports(filename):
+def fix_imports(filename, mode):
+
+  normal = 0
+  extra = 1
+
   print "Fixing imports in " + filename
   file = open(filename,"r")
   lines = file.readlines()
   file.close()
 
   file = open(filename,"w")
-  add_new = [final] + lines
-  lines = add_new
+  if mode is extra:
+    add_new = [final, extraimport] + lines
+    lines = add_new
+  else:
+    add_new = [final] + lines
+    lines = add_new
 
   imports = []
   for line in lines:
     is_import = line.startswith("from")
     if is_import:
       imports.append(line)
-    discard = imports[1:]
+    if mode is extra:
+      discard = imports[2:]
+    else:
+      discard = imports[1:]
     if line not in discard:
       file.write("%s"%line)
   file.close()
@@ -169,15 +188,30 @@ def process():
               all_files = len(file_names)
               print "processing..."
               for n in range(0, all_files):
-                wrecker(modules[n] + ".py")
-                fix_imports(modules[n] + ".py")
+                if n is 0 or n is 1:
+                  fix_imports(modules[n] + ".py", 0)
+                else:
+                  wrecker(modules[n] + ".py")
+                  fix_imports(modules[n] + ".py", 0)
                 try:
                   if headers_package:
-                    fix_imports(headers_sub[n] + ".py")
-                    fix_imports("headers/header_common.py")
+                    check_troops = check_file(headers_sub[n], "troops")
+                    check_parties = check_file(headers_sub[n], "parties")
+                    if check_troops is True or check_parties is True:
+                      fix_imports(headers_sub[n] + ".py", 1)
+                      fix_imports("headers/header_common.py", 0)
+                    else: 
+                      fix_imports(headers_sub[n] + ".py", 0)
+                      fix_imports("headers/header_common.py", 0)
                   else:
-                    fix_imports(headers[n] + ".py")
-                    fix_imports("header_common.py")
+                    check_troops = check_file(headers_sub[n], "troops")
+                    check_parties = check_file(headers_sub[n], "parties")
+                    if check_troops is True or check_parties is True:
+                      fix_imports(headers[n] + ".py", 1)
+                      fix_imports("header_common.py", 0)
+                    else:
+                      fix_imports(headers[n] + ".py", 0)
+                      fix_imports("header_common.py", 0)
                 except:
                   pass 
               add_wrecker_options("module_info.py")
@@ -185,7 +219,7 @@ def process():
             elif choice == '2':
               response = raw_input('Input a file to process: ')
               wrecker(response + ".py")
-              fix_imports(response + ".py")
+              fix_imports(response + ".py", 0)
 
             elif choice == '3':
               add_wrecker_options("module_info.py")

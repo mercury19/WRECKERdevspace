@@ -1,4 +1,5 @@
 from compiler import *
+from header_common import bignum
 import string
 import string
 import string

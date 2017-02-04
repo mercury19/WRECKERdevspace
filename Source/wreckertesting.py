@@ -41,7 +41,7 @@ headers_package = path_exists('./headers')
 # 	from header_common import *
 
 
-file_names = ['animations', 'dialogs', 'factions', 'game_menus', 'items', 'map_icons', 'meshes', 'mission_templates', 'music', 'particle_systems', 'parties', 'party_templates', 'postfx', 'presentations', 'quests', 'scene_props', 'scenes', 'scripts', 'simple_triggers', 'skills', 'skins', 'sounds', 'strings', 'tableau_materials', 'triggers', 'troops'] 
+file_names = ['animations', 'quests', 'dialogs', 'factions', 'game_menus', 'items', 'map_icons', 'meshes', 'mission_templates', 'music', 'particle_systems', 'parties', 'party_templates', 'postfx', 'presentations', 'scene_props', 'scenes', 'scripts', 'simple_triggers', 'skills', 'skins', 'sounds', 'strings', 'tableau_materials', 'triggers', 'troops'] 
 
 
 quote = '"'
@@ -55,6 +55,7 @@ info = "\n\n###################################\n#   W.R.E.C.K. Compiler Options
 
 
 final = "from compiler import *\n"
+extraimport = "from header_common import bignum\n"
 
 special_str = re.compile(r'str_1_')
 not_str = re.compile(r'(str_clear|str_is_empty|str_store|str_encode|str_\d)')
@@ -63,9 +64,10 @@ module_files = ['module_' + n for n in file_names]
 headers = ['header_' + n for n in file_names]
 headers_sub = ['headers/' + h for h in headers]
 
-# print module_files
-# print headers
-# print headers_sub
+print module_files
+print file_names[2]
+print headers
+print headers_sub
 
 
 
@@ -131,7 +133,7 @@ def fix_string_refs(string):
 
 
 
-fix_string_refs(test_string)
+# fix_string_refs(test_string)
 
 
 
@@ -185,10 +187,13 @@ def find_old_ref(string):
 
 	return string
 
-find_old_ref(test_string)
+# find_old_ref(test_string)
 
 
-def fix_imports(filename):
+def fix_imports(filename, mode):
+
+	normal = 0
+	extra = 1
 
 	print "Fixing imports in " + filename
 	file = open(filename,"r")
@@ -196,8 +201,12 @@ def fix_imports(filename):
 	file.close()
 
 	file = open(filename,"w")
-	add_new = [final] + lines
-	lines = add_new
+	if mode is extra:
+		add_new = [final, extraimport] + lines
+		lines = add_new
+	else:
+		add_new = [final] + lines
+		lines = add_new
 
 	imports = []
 	for line in lines:
@@ -206,14 +215,17 @@ def fix_imports(filename):
 		# print is_import
 		if is_import:
 			imports.append(line)
-		discard = imports[1:]
-		# print discard
+		if mode is extra:
+			discard = imports[2:]
+		else:
+			discard = imports[1:]
+		print discard
 		if line not in discard:
 			file.write("%s"%line)
 	file.close()
 
 
-# fix_imports("bogus_import_file.py")
+fix_imports("bogus_import_file.py", 1)
 # fix_imports("module_presentations.py")
 
 
